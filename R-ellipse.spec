@@ -4,38 +4,39 @@
 #
 Name     : R-ellipse
 Version  : 0.4.1
-Release  : 24
+Release  : 25
 URL      : https://cran.r-project.org/src/contrib/ellipse_0.4.1.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/ellipse_0.4.1.tar.gz
 Summary  : Functions for Drawing Ellipses and Ellipse-Like Confidence
 Group    : Development/Tools
 License  : GPL-2.0+
 BuildRequires : buildreq-R
-BuildRequires : util-linux
 
 %description
-This package contains ellipse drawing routines designed for pairwise
-confidence regions, including distorted ellipses for nonlinear
-regression regions.  It also includes a routine "plotcorr" for
-plotting correlation matrices using ellipses.
+ellipses and ellipse-like confidence regions, implementing the plots
+    described in Murdoch and Chow (1996), A graphical display of large
+    correlation matrices, The American Statistician 50, 178-180. There are
+    also routines implementing the profile plots described in Bates and
+    Watts (1988), Nonlinear Regression Analysis and its Applications.
 
 %prep
 %setup -q -c -n ellipse
+cd %{_builddir}/ellipse
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571823101
+export SOURCE_DATE_EPOCH=1589516761
 
 %install
-export SOURCE_DATE_EPOCH=1571823101
+export SOURCE_DATE_EPOCH=1589516761
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FCFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
-export FFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
+export FCFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
+export FFLAGS="$FFLAGS -O3 -flto -fno-semantic-interposition "
 export CXXFLAGS="$CXXFLAGS -O3 -flto -fno-semantic-interposition "
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
