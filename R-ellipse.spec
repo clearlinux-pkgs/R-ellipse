@@ -4,7 +4,7 @@
 #
 Name     : R-ellipse
 Version  : 0.4.3
-Release  : 45
+Release  : 46
 URL      : https://cran.r-project.org/src/contrib/ellipse_0.4.3.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/ellipse_0.4.3.tar.gz
 Summary  : Functions for Drawing Ellipses and Ellipse-Like Confidence
