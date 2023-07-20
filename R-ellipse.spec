@@ -4,10 +4,10 @@
 # Using build pattern: R
 #
 Name     : R-ellipse
-Version  : 0.4.5
-Release  : 50
-URL      : https://cran.r-project.org/src/contrib/ellipse_0.4.5.tar.gz
-Source0  : https://cran.r-project.org/src/contrib/ellipse_0.4.5.tar.gz
+Version  : 0.5.0
+Release  : 51
+URL      : https://cran.r-project.org/src/contrib/ellipse_0.5.0.tar.gz
+Source0  : https://cran.r-project.org/src/contrib/ellipse_0.5.0.tar.gz
 Summary  : Functions for Drawing Ellipses and Ellipse-Like Confidence
 Group    : Development/Tools
 License  : GPL-2.0+
@@ -21,16 +21,19 @@ ellipses and ellipse-like confidence regions, implementing the plots
 
 %prep
 %setup -q -n ellipse
+pushd ..
+cp -a ellipse buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680706936
+export SOURCE_DATE_EPOCH=1689889557
 
 %install
-export SOURCE_DATE_EPOCH=1680706936
+export SOURCE_DATE_EPOCH=1689889557
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -68,6 +71,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
 R CMD check --no-manual --no-examples --no-codoc . || :
 
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
